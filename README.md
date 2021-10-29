@@ -32,6 +32,13 @@ Open Anypoint Studio, go to Help 'Install New Software' and select Anypoint Conn
 Build the connector with MuleSoft's Anypoint Studio and attach it to your project with the built jar-file.
 In order to build a community version of the connector, change the category parameter from pom.xml to: Community
 
+Schema prefix and schema location:
+
+```xml
+<mule xmlns:x-road="http://www.mulesoft.org/schema/mule/x-road"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/x-road http://www.mulesoft.org/schema/mule/x-road/current/mule-x-road.xsd">
+```
+
 Example usage from a Mule project:
 
     <x-road:x-road name="Xroad_config" endpointUrl="${endpoint.lipa}" trustStorePath="keystore.jks" trustStorePassword="${truststore.password}" trustStoreType="JKS"
