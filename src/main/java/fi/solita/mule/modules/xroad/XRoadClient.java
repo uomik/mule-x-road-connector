@@ -157,9 +157,15 @@ public class XRoadClient {
 
     private SSLSocketFactory initializeSocketFactory(XRoadConnectorConfig config) throws IOException, KeyManagementException, NoSuchAlgorithmException, CreateException {
     	TlsConfiguration tlsConfig = new TlsConfiguration("xrd_" + config.getTrustStorePath());
+
     	tlsConfig.setTrustStore(config.getTrustStorePath());
     	tlsConfig.setTrustStorePassword(config.getTrustStorePassword());
     	tlsConfig.setTrustStoreType(config.getTrustStoreType());
+
+        tlsConfig.setClientKeyStore(config.getKeyStorePath());
+        tlsConfig.setClientKeyStorePassword(config.getKeyStorePassword());
+        tlsConfig.setClientKeyStoreType(config.getKeyStoreType());
+
     	tlsConfig.initialise(true, "xrd");
     	return tlsConfig.getSocketFactory();
 	}

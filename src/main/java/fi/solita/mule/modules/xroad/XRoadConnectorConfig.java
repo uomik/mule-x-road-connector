@@ -41,6 +41,27 @@ public class XRoadConnectorConfig {
     private String trustStoreType;
 
     /**
+     * Path to the client keystore. E.g. keystore.jks
+     */
+    @Configurable
+    @Optional
+    private String keyStorePath;
+
+    /**
+     * Password of the client keystore.
+     */
+    @Configurable
+    @Optional
+    private String keyStorePassword;
+
+    /**
+     * Type of the client keystore. E.g. JKS
+     */
+    @Configurable
+    @Optional
+    private String keyStoreType;
+
+    /**
      * X-Road header
      */
     @Configurable
@@ -166,7 +187,31 @@ public class XRoadConnectorConfig {
     public void setTrustStoreType(String trustStoreType) {
         this.trustStoreType = trustStoreType;
     }
-    
+
+    public String getKeyStorePath() {
+        return keyStorePath;
+    }
+
+    public void setKeyStorePath(String keyStorePath) {
+        this.keyStorePath = keyStorePath;
+    }
+
+    public String getKeyStorePassword() {
+        return keyStorePassword;
+    }
+
+    public void setKeyStorePassword(String keyStorePassword) {
+        this.keyStorePassword = keyStorePassword;
+    }
+
+    public String getKeyStoreType() {
+        return keyStoreType;
+    }
+
+    public void setKeyStoreType(String keyStoreType) {
+        this.keyStoreType = keyStoreType;
+    }
+
     public String getClientXroadInstance() {
         return clientXroadInstance;
     }

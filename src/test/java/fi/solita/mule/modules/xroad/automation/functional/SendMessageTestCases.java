@@ -44,6 +44,9 @@ public class SendMessageTestCases extends AbstractTestCase<XRoadConnector> {
 		config.setTrustStorePath("keystore.jks");
 		config.setTrustStorePassword("changeit");
 		config.setTrustStoreType("JKS");
+        config.setKeyStorePath("keystore.jks");
+        config.setKeyStorePassword("changeit");
+        config.setKeyStoreType("JKS");
 
 		try {
 			connector.sendMessage(payload, "ID", "clientXroadInstance", "clientMemberClass", "clientMemberCode",
