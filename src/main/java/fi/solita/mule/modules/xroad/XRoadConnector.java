@@ -53,10 +53,11 @@ public class XRoadConnector {
      * @param serviceServiceVersion X-Road header
      * @param async X-Road header
      * @param userId X-Road header
+     * @param issue X-Road header
      * @param protocolVersion X-Road header
      * @return returns reponse message. Following x-road headers are set to
      *         outbound properties: X-Road-clientMemberClass,
-     *         X-Road-serviceXroadInstance, X-Road-userId,
+     *         X-Road-serviceXroadInstance, X-Road-userId, X-Road-issue,
      *         X-Road-clientSubsystemCode, X-Road-serviceSubsystemCode,
      *         X-Road-id, X-Road-clientMemberCode, X-Road-serviceMemberCode,
      *         X-Road-serviceServiceCode, X-Road-protocolVersion,
@@ -70,7 +71,7 @@ public class XRoadConnector {
             @Optional String serviceXroadInstance, @Optional String serviceMemberClass,
             @Optional String serviceMemberCode, @Optional String serviceSubsystemCode,
             @Optional String serviceServiceCode, @Optional String serviceServiceVersion,
-            @Optional Boolean async, @Optional String userId, @Optional String protocolVersion,
+            @Optional Boolean async, @Optional String userId, @Optional String issue, @Optional String protocolVersion,
             // @OutboundHeaders Map<String, Object> outboundHeaders
             // workaround for
             // http://forums.mulesoft.com/questions/32807/outboundheaders-parameter-naming-in-connection-pro.html
@@ -78,7 +79,7 @@ public class XRoadConnector {
         XRoadHeaders overridedHeaders = new XRoadHeaders(defaultString(id, UUID.getUUID()),
                 clientXroadInstance, clientMemberClass, clientMemberCode, clientSubsystemCode,
                 serviceXroadInstance, serviceMemberClass, serviceMemberCode, serviceSubsystemCode,
-                serviceServiceCode, serviceServiceVersion, async, userId, protocolVersion);
+                serviceServiceCode, serviceServiceVersion, async, userId, issue, protocolVersion);
 
         Result response = config.getClient().send(payload, config.getXRoadHeaders().merge(overridedHeaders), config);
 

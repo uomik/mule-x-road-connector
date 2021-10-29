@@ -125,6 +125,13 @@ public class XRoadConnectorConfig {
      */
     @Configurable
     @Optional
+    public String issue;
+
+    /**
+     * X-Road header
+     */
+    @Configurable
+    @Optional
     @Default("4.0")
     public String protocolVersion;
 
@@ -239,7 +246,6 @@ public class XRoadConnectorConfig {
     public void setServiceServiceVersion(String serviceServiceVersion) {
         this.serviceServiceVersion = serviceServiceVersion;
     }
-
    
     public String getAsync() {
         return async;
@@ -247,6 +253,14 @@ public class XRoadConnectorConfig {
 
     public void setAsync(String async) {
         this.async = async;
+    }
+
+    public String getIssue() {
+        return issue;
+    }
+
+    public void setIssue(String issue) {
+        this.issue = issue;
     }
 
     public String getUserId() {
@@ -277,7 +291,7 @@ public class XRoadConnectorConfig {
         return new XRoadHeaders(null, clientXroadInstance, clientMemberClass, clientMemberCode,
                 clientSubsystemCode, serviceXroadInstance, serviceMemberClass, serviceMemberCode,
                 serviceSubsystemCode, serviceServiceCode, serviceServiceVersion,
-                async == null ? null : Boolean.valueOf(async), userId, protocolVersion);
+                async == null ? null : Boolean.valueOf(async), userId, issue, protocolVersion);
 
     }
 

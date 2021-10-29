@@ -48,10 +48,10 @@ public class SendMessageTestCases extends AbstractTestCase<XRoadConnector> {
 		try {
 			connector.sendMessage(payload, "ID", "clientXroadInstance", "clientMemberClass", "clientMemberCode",
 					"clientSubsystemCode", "serviceXroadInstance", "serviceMemberClass", "serviceMemberCode", "serviceSubsystemCode",
-					"serviceServiceCode", "serviceServiceVersion", Boolean.FALSE, "userId", "protocolVersion", null);
+                    "serviceServiceCode", "serviceServiceVersion", Boolean.FALSE, "userId", "issue", "protocolVersion", null);
 			fail("No exception!");
 		} catch (RuntimeException re) {
-			assertTrue(re.getCause().getMessage().contains("Connection refused: connect"));
+            assertTrue(re.getCause().getMessage().contains("Connection refused"));
 		}
 	}
 	

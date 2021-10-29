@@ -22,13 +22,14 @@ public class XRoadHeaders {
     public final String serviceServiceVersion;
     public final Boolean async;
     public final String userId;
+    public final String issue;
     public final String protocolVersion;
 
     public XRoadHeaders(String id, String clientXroadInstance, String clientMemberClass,
             String clientMemberCode, String clientSubsystemCode, String serviceXroadInstance,
             String serviceMemberClass, String serviceMemberCode, String serviceSubsystemCode,
             String serviceServiceCode, String serviceServiceVersion, Boolean async, String userId,
-            String protocolVersion) {
+            String issue, String protocolVersion) {
         this.id = id;
         this.clientXroadInstance = clientXroadInstance;
         this.clientMemberClass = clientMemberClass;
@@ -42,6 +43,7 @@ public class XRoadHeaders {
         this.serviceServiceVersion = serviceServiceVersion;
         this.async = async;
         this.userId = userId;
+        this.issue = issue;
         this.protocolVersion = protocolVersion;
     }
 
@@ -67,6 +69,7 @@ public class XRoadHeaders {
                 defaultString(overridedHeaders.serviceServiceVersion, serviceServiceVersion),
                 (overridedHeaders.async != null ? overridedHeaders.async : async),
                 defaultString(overridedHeaders.userId, userId),
+                defaultString(overridedHeaders.issue, issue),
                 defaultString(overridedHeaders.protocolVersion, protocolVersion));
         return result;
     }
@@ -83,7 +86,6 @@ public class XRoadHeaders {
         requireNonNull(serviceSubsystemCode, "serviceSubsystemCode must not be null");
         requireNonNull(serviceServiceCode, "serviceServiceCode must not be null");
         requireNonNull(serviceServiceVersion, "serviceServiceVersion must not be null");
-        requireNonNull(userId, "userId must not be null");
         requireNonNull(protocolVersion, "protocolVersion must not be null");
     }
 

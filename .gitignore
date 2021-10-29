@@ -8,3 +8,8 @@ studio_id.xml
 build.properties
 mule-project.xml
 META-INF/MANIFEST.MF
+/.idea/
+/.java-version
+.DS_Store
+.idea/
+.java-version

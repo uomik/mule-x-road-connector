@@ -99,6 +99,7 @@ public class XRoadClient {
                 XRoadServiceIdentifierType.class, unmarshaller);
         Boolean async = findXroadHeaderJaxbElement(soapHeader, "async", Boolean.class, unmarshaller);
         String userId = getXroadHeaderJaxbElement(soapHeader, "userId", String.class, unmarshaller);
+        String issue = getXroadHeaderJaxbElement(soapHeader, "issue", String.class, unmarshaller);
         String id = getXroadHeaderJaxbElement(soapHeader, "id", String.class, unmarshaller);
         String protocolVersion = getXroadHeaderJaxbElement(soapHeader, "protocolVersion",
                 String.class, unmarshaller);
@@ -108,7 +109,7 @@ public class XRoadClient {
                 client.getMemberClass(), client.getMemberCode(), client.getSubsystemCode(),
                 service.getXRoadInstance(), service.getMemberClass(), service.getMemberCode(),
                 service.getSubsystemCode(), service.getServiceCode(), service.getServiceVersion(),
-                async, userId, protocolVersion);
+                async, userId, issue, protocolVersion);
         return result;
     }
 
@@ -140,7 +141,7 @@ public class XRoadClient {
         QName portName = new QName("", "");
         Service service = Service.create(serviceName);
         service.addPort(portName, SOAPBinding.SOAP11HTTP_BINDING, config.getEndpointUrl());
-        DispatchImpl<SOAPMessage> dispatch = (DispatchImpl<SOAPMessage>) service.createDispatch(portName, SOAPMessage.class, Service.Mode.MESSAGE);        
+        DispatchImpl<SOAPMessage> dispatch = (DispatchImpl<SOAPMessage>) service.createDispatch(portName, SOAPMessage.class, Service.Mode.MESSAGE);
 
         if (StringUtils.startsWithIgnoreCase(config.getEndpointUrl(), "https") && config.getTrustStorePath() != null) {
 	    	HTTPConduit httpConduit = (HTTPConduit) dispatch.getClient().getConduit();
@@ -202,6 +203,7 @@ public class XRoadClient {
             marshaller.marshal(xroadOf.createAsync(xRoadHeaders.async), header);
         }
         marshaller.marshal(xroadOf.createUserId(xRoadHeaders.userId), header);
+        marshaller.marshal(xroadOf.createIssue(xRoadHeaders.issue), header);
         marshaller.marshal(xroadOf.createId(xRoadHeaders.id), header);
 
         marshaller.marshal(xroadOf.createProtocolVersion(xRoadHeaders.protocolVersion), header);
