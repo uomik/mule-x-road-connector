@@ -53,6 +53,11 @@ public class LipaMockComponent implements Callable {
      */
     private MuleMessage handleResponse(MuleMessage message) throws Exception {
         String reqPayload = message.getPayloadAsString(DEFAULT_ENCODING);
+
+        System.err.println("*** LipaMock received: ***");
+        System.err.println(reqPayload);
+        System.err.println("***");
+
         Document requestDocument = getDocumentFromString(reqPayload);
         Node bodyNode = findNodeFromDocument(requestDocument, "Body");
         Node serviceNode = bodyNode.getChildNodes().item(0);
