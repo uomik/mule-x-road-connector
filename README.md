@@ -41,22 +41,31 @@ Schema prefix and schema location:
 
 Example usage from a Mule project:
 
-    <x-road:x-road name="Xroad_config" endpointUrl="${endpoint.lipa}" trustStorePath="keystore.jks" trustStorePassword="${truststore.password}" trustStoreType="JKS"
-        clientXroadInstance="${lipa.instance}" clientMemberClass="${lipa.client.memberClass}"
-        clientMemberCode="${lipa.client.memberCode}" clientSubsystemCode="${lipa.client.subsystemCode}"
-        serviceXroadInstance="${lipa.instance}" serviceMemberClass="${lipa.service.x.memberClass}"
-        serviceMemberCode="${lipa.service.x.memberCode}" serviceSubsystemCode="${lipa.service.x.subsystemCode}" />
-
-    <script:component>
-      <script:script engine="groovy">
-                <![CDATA[
+```xml
+<mule>
+    <x-road:x-road name="XRoad_config" endpointUrl="${endpoint.lipa}"
+                   trustStorePath="keystore.jks" trustStorePassword="${truststore.password}" trustStoreType="JKS"
+                   keyStorePath="keystore.jks" keyStorePassword="${keystore.password}" keyPassword="${key.password}" keyStoreType="JKS"
+                   clientXroadInstance="${lipa.instance}" clientMemberClass="${lipa.client.memberClass}"
+                   clientMemberCode="${lipa.client.memberCode}" clientSubsystemCode="${lipa.client.subsystemCode}"
+                   serviceXroadInstance="${lipa.instance}" serviceMemberClass="${lipa.service.x.memberClass}"
+                   serviceMemberCode="${lipa.service.x.memberCode}" serviceSubsystemCode="${lipa.service.x.subsystemCode}"
+                   userId="${lipa.client.userId}" issue="{lipa.client.issue}" />
+    
+    <flow name="send-xroad-message">
+        <script:component>
+            <script:script engine="groovy"><![CDATA[
                 payload = org.w3c.dom.Document('Service-specific Request Document');
-                ]]>
-      </script:script>
-    </script:component>
-
-    <x-road:send-message config-ref="Xroad_config"
-      serviceServiceCode="${lipa.service.x.serviceCode}" serviceServiceVersion="${lipa.service.x.serviceVersion}" userId="#[message.inboundProperties.'userId']" />
+            ]]></script:script>
+        </script:component>
+        
+        <x-road:send-message config-ref="XRoad_config"
+                             serviceServiceCode="${lipa.service.x.serviceCode}"
+                             serviceServiceVersion="${lipa.service.x.serviceVersion}" 
+                             issue="#[flowVars.issue]" userId="#[flowVars.userId]" id="#[flowVars.submissionId]" />
+    </flow>
+</mule>
+```
 
 For further information about usage our documentation at https://github.com/solita/mule-x-road-connector.
 
