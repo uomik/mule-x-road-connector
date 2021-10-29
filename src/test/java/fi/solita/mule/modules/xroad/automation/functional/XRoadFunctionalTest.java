@@ -12,8 +12,12 @@ import org.mule.api.MuleMessage;
 import org.mule.api.transformer.TransformerException;
 import org.mule.module.xml.transformer.XmlPrettyPrinter;
 import org.mule.tck.junit4.FunctionalTestCase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class XRoadFunctionalTest extends FunctionalTestCase {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(XRoadFunctionalTest.class);
 
     @Override
     protected String getConfigFile() {
@@ -39,11 +43,11 @@ public class XRoadFunctionalTest extends FunctionalTestCase {
     }
 
     private void logProperties(MuleMessage message) throws Exception {
-    	logger.warn("Outbound properties: ");
+        LOGGER.warn("Outbound properties: ");
     	for (String propName :  message.getOutboundPropertyNames()) {
-    		logger.warn(propName + ": " + message.getOutboundProperty(propName));
+            LOGGER.warn(propName + ": " + message.getOutboundProperty(propName));
     	}
-    	logger.warn("Result:\n" + prettyXML(message.getPayloadAsString()));
+        LOGGER.warn("Result:\n" + prettyXML(message.getPayloadAsString()));
     }
 
     private String prettyXML(String xmlString) {

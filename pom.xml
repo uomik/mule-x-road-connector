@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.mule.tools.devkit</groupId>
         <artifactId>mule-devkit-parent</artifactId>
-        <version>3.9.0</version>
+        <version>3.9.5</version>
     </parent>
 
     <properties>
@@ -21,6 +21,7 @@
         <licensePath>LICENSE.md</licensePath>
         <devkit.studio.package.skip>false</devkit.studio.package.skip>
     </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -68,6 +69,12 @@
             <artifactId>mule-module-cxf</artifactId>
             <version>${mule.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <repositories>
