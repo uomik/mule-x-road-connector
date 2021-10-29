@@ -6,6 +6,8 @@ package fi.solita.mule.modules.xroad;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.net.ssl.SSLSocketFactory;
 import javax.xml.bind.JAXBContext;
@@ -23,6 +25,9 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 import javax.xml.ws.Dispatch;
 import javax.xml.ws.Service;
+import javax.xml.ws.handler.Handler;
+import javax.xml.ws.handler.HandlerResolver;
+import javax.xml.ws.handler.PortInfo;
 import javax.xml.ws.soap.SOAPBinding;
 
 import org.apache.commons.lang.StringUtils;
@@ -140,6 +145,12 @@ public class XRoadClient {
         QName serviceName = new QName("", "");
         QName portName = new QName("", "");
         Service service = Service.create(serviceName);
+        service.setHandlerResolver(new HandlerResolver() {
+            @Override
+            public List<Handler> getHandlerChain(PortInfo portInfo) {
+                return Arrays.asList((Handler) new XRoadSoapPrefixHandler());
+            }
+        });
         service.addPort(portName, SOAPBinding.SOAP11HTTP_BINDING, config.getEndpointUrl());
         DispatchImpl<SOAPMessage> dispatch = (DispatchImpl<SOAPMessage>) service.createDispatch(portName, SOAPMessage.class, Service.Mode.MESSAGE);
 
