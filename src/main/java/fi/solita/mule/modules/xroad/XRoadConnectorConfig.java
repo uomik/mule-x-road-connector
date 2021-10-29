@@ -55,6 +55,13 @@ public class XRoadConnectorConfig {
     private String keyStorePassword;
 
     /**
+     * Password of the client key.
+     */
+    @Configurable
+    @Optional
+    private String keyPassword;
+
+    /**
      * Type of the client keystore. E.g. JKS
      */
     @Configurable
@@ -202,6 +209,14 @@ public class XRoadConnectorConfig {
 
     public void setKeyStorePassword(String keyStorePassword) {
         this.keyStorePassword = keyStorePassword;
+    }
+
+    public String getKeyPassword() {
+        return keyPassword;
+    }
+
+    public void setKeyPassword(String keyPassword) {
+        this.keyPassword = keyPassword;
     }
 
     public String getKeyStoreType() {

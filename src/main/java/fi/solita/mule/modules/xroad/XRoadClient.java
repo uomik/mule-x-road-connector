@@ -173,11 +173,17 @@ public class XRoadClient {
     	tlsConfig.setTrustStorePassword(config.getTrustStorePassword());
     	tlsConfig.setTrustStoreType(config.getTrustStoreType());
 
-        tlsConfig.setClientKeyStore(config.getKeyStorePath());
-        tlsConfig.setClientKeyStorePassword(config.getKeyStorePassword());
-        tlsConfig.setClientKeyStoreType(config.getKeyStoreType());
+        tlsConfig.setKeyStore(config.getKeyStorePath());
+        tlsConfig.setKeyStorePassword(config.getKeyStorePassword());
+        tlsConfig.setKeyPassword(config.getKeyPassword());
+        tlsConfig.setKeyStoreType(config.getKeyStoreType());
 
-    	tlsConfig.initialise(true, "xrd");
+        if (config.getKeyStorePath() != null  && config.getKeyStorePassword() != null && config.getKeyPassword() != null) {
+            tlsConfig.initialise(false, "xrd");
+        } else {
+            tlsConfig.initialise(true, "xrd");
+        }
+
     	return tlsConfig.getSocketFactory();
 	}
 
