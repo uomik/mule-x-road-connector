@@ -12,7 +12,6 @@ import org.mule.api.MuleMessage;
 import org.mule.api.annotations.Config;
 import org.mule.api.annotations.Connector;
 import org.mule.api.annotations.Processor;
-import org.mule.api.annotations.licensing.RequiresEnterpriseLicense;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
 import org.mule.util.UUID;
@@ -26,7 +25,6 @@ import fi.solita.mule.modules.xroad.XRoadClient.Result;
  * 
  * @author Ari Ruotsalainen, Solita Oy
  */
-@RequiresEnterpriseLicense(allowEval = true)
 @Connector(name = "x-road", description = "X-Road Connector", friendlyName = "X-Road", minMuleVersion = "3.5")
 public class XRoadConnector {
 

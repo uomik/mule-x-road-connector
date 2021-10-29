@@ -15,9 +15,7 @@
     </parent>
 
     <properties>
-        <category>Certified</category>
-        <!-- For Mule CE use Community packaging -->
-        <!--<category>Community</category>-->
+        <category>Community</category>
         <licensePath>LICENSE.md</licensePath>
         <devkit.studio.package.skip>false</devkit.studio.package.skip>
     </properties>
@@ -85,9 +83,9 @@
             <layout>default</layout>
         </repository>
     </repositories>
-    <scm>
+    <!--<scm>
         <connection>scm:git:git://github.com:solita/x-road.git</connection>
         <developerConnection>scm:git:git@github.com:solita/x-road-connector.git</developerConnection>
         <url>http://github.com/solita/x-road</url>
-    </scm>
+    </scm>-->
 </project>
