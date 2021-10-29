@@ -17,7 +17,7 @@ public class XRoadSoapPrefixHandler implements SOAPHandler<SOAPMessageContext> {
     @Override
     public boolean handleMessage(SOAPMessageContext context) {
         final Boolean outbound = (Boolean) context.get(MessageContext.MESSAGE_OUTBOUND_PROPERTY);
-        // only process outbound messages
+        // Only process outbound messages
         if (outbound) {
             try {
                 final SOAPMessage soapMessage = context.getMessage();
@@ -25,26 +25,22 @@ public class XRoadSoapPrefixHandler implements SOAPHandler<SOAPMessageContext> {
                 final SOAPHeader soapHeader = soapMessage.getSOAPHeader();
                 final SOAPBody soapBody = soapMessage.getSOAPBody();
 
-                // STEP 1: add new prefix/namespace entries
+                // Add new prefix + namespace entry
                 soapEnvelope.addNamespaceDeclaration("SOAP-ENV", "http://schemas.xmlsoap.org/soap/envelope/");
 
-                // STEP 2: set desired namespace prefixes
-                // set desired namespace prefix for the envelope, header and body
+                // Set desired namespace prefix for the envelope, header and body
                 soapEnvelope.setPrefix("SOAP-ENV");
                 soapHeader.setPrefix("SOAP-ENV");
                 soapBody.setPrefix("SOAP-ENV");
 
-                // STEP 3: remove prefix/namespace entries entries added by JAX-WS
+                // Remove prefix + namespace entries added by JAX-WS
                 soapEnvelope.removeNamespaceDeclaration("soap");
                 soapHeader.removeNamespaceDeclaration("soap");
                 soapBody.removeNamespaceDeclaration("soap");
 
-                // IMPORTANT! "Save" the changes
                 soapMessage.saveChanges();
             }
-            catch (SOAPException e) {
-                // handle the error
-            }
+            catch (SOAPException e) { }
         }
 
         return true;
