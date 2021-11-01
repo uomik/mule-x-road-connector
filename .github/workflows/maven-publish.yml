@@ -31,7 +31,7 @@ jobs:
         mirrors: >-
           [{ "id": "jfrog-mirror", "mirrorOf": "jfrog", "url": "http://repo.jfrog.org/artifactory/plugins-releases-local", "blocked": "false" },
           { "id": "mulesoft-plugin-releases-mirror", "mirrorOf": "mulesoft-plugin-releases", "url": "http://repository.mulesoft.org/releases/", "blocked": "false" },
-          { "id": "mulesoft-plugin-snapshots-mirror", "mirrorOf": "mulesoft-plugin-snapshots", "url": "http://repository.mulesoft.org/snapshots/", "blocked": "false" }]'
+          { "id": "mulesoft-plugin-snapshots-mirror", "mirrorOf": "mulesoft-plugin-snapshots", "url": "http://repository.mulesoft.org/snapshots/", "blocked": "false" }]
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
