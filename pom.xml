@@ -20,6 +20,14 @@
         <devkit.studio.package.skip>false</devkit.studio.package.skip>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Uomik Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/uomik/x-road-connector</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>
