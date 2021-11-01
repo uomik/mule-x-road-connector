@@ -28,7 +28,7 @@ jobs:
     - name: maven-settings-action
       uses: s4u/maven-settings-action@v2.4.1
       with:
-        servers: '[{"id": "github", "username": "${{ env.GITHUB_ACTOR }}", "password": "${{ secrets.GITHUB_TOKEN }}"}]'
+        servers: '[{"id": "github", "username": "$GITHUB_ACTOR", "password": "$GITHUB_TOKEN"}]'
         mirrors: >-
           [{ "id": "mulesoft-plugin-releases-mirror", "name": "MulesoftPluginReleasesMirror", "mirrorOf": "mulesoft-plugin-releases", "url": "https://repository.mulesoft.org/releases/" },
           { "id": "mulesoft-plugin-snapshots-mirror", "name": "MulesoftPluginSnapshotsMirror", "mirrorOf": "mulesoft-plugin-snapshots", "url": "https://repository.mulesoft.org/snapshots/" }]
