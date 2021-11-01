@@ -29,8 +29,8 @@ jobs:
       uses: s4u/maven-settings-action@v2.4.1
       with:
         mirrors: >-
-          [{ "id": "mulesoft-plugin-releases-mirror", "mirrorOf": "mulesoft-plugin-releases", "url": "https://repository.mulesoft.org/releases/" },
-          { "id": "mulesoft-plugin-snapshots-mirror", "mirrorOf": "mulesoft-plugin-snapshots", "url": "https://repository.mulesoft.org/snapshots/" }]
+          [{ "id": "mulesoft-plugin-releases-mirror", "name": "MulesoftPluginReleasesMirror", "mirrorOf": "mulesoft-plugin-releases", "url": "https://repository.mulesoft.org/releases/" },
+          { "id": "mulesoft-plugin-snapshots-mirror", "name": "MulesoftPluginSnapshotsMirror", "mirrorOf": "mulesoft-plugin-snapshots", "url": "https://repository.mulesoft.org/snapshots/" }]
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
